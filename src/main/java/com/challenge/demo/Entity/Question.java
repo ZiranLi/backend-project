@@ -1,4 +1,4 @@
-package com.challenge.demo;
+package com.challenge.demo.Entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.Length;

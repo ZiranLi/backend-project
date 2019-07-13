@@ -1,4 +1,4 @@
-package com.challenge.demo;
+package com.challenge.demo.Entity;
 
 import javax.persistence.Entity;
 

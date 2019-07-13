@@ -1,5 +1,9 @@
-package com.challenge.demo;
+package com.challenge.demo.Service;
 
+import com.challenge.demo.DAO.UserDao;
+import com.challenge.demo.DAO.UserRepository;
+import com.challenge.demo.Entity.Question;
+import com.challenge.demo.Entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

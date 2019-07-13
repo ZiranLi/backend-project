@@ -1,5 +1,6 @@
-package com.challenge.demo;
+package com.challenge.demo.DAO;
 
+import com.challenge.demo.Entity.Site;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

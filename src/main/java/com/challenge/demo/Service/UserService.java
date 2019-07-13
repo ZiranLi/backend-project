@@ -1,4 +1,7 @@
-package com.challenge.demo;
+package com.challenge.demo.Service;
+
+import com.challenge.demo.Entity.Question;
+import com.challenge.demo.Entity.User;
 
 public interface UserService {
 

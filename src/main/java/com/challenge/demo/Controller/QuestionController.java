@@ -1,5 +1,8 @@
-package com.challenge.demo;
+package com.challenge.demo.Controller;
 
+import com.challenge.demo.DAO.*;
+import com.challenge.demo.Entity.Question;
+import com.challenge.demo.Entity.QuestionAnswer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

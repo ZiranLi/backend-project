@@ -1,5 +1,6 @@
-package com.challenge.demo;
+package com.challenge.demo.DAO;
 
+import com.challenge.demo.Entity.User;
 import org.springframework.data.repository.query.Param;
 
 
