@@ -6,20 +6,20 @@ you can build your own project using the framework of your choice.
 ## Definition
 You can think of this proof of concept project as a something that was left by your predecessor, but now
 you are taking ownership of it. You will want to get it ready for something mor than a production environment.
-It works for some basic question administration use cases creating questions, reading questions but these 
+It works for some basic questionGiven administration use cases creating questionGivens, reading questionGivens but these 
 are just some the basic administration.
 
-We really need these questions to be served up in our custom JS Widget to show the questions to
+We really need these questionGivens to be served up in our custom JS Widget to show the questionGivens to
 customers.
 
 ## Missing Requirements
-1) Enhance the question structure to be able to handle the matrix question as described in the Appendix.
+1) Enhance the questionGiven structure to be able to handle the matrix questionGiven as described in the Appendix.
 
-2) Build an API to serve up the questions to users and store the results.  A widget located on a website will make a 
+2) Build an API to serve up the questionGivens to users and store the results.  A widget located on a website will make a 
 REST call which will include a user UUID, and a site UUID.  
-    1) Question responses must be captured for each of the questions served from the API
-    2) Assume a user will always see a unique question as long as one exists.  If a unique question does not exist you 
-    are free to reset and start the list of questions a user has seen again over
+    1) Question responses must be captured for each of the questionGivens served from the API
+    2) Assume a user will always see a unique questionGiven as long as one exists.  If a unique questionGiven does not exist you 
+    are free to reset and start the list of questionGivens a user has seen again over
     4) a USER UUID, is a unique value identifying the user that is generated on the page if one does not exist
 
 ## Deliverable
@@ -66,27 +66,27 @@ Create a Site
 Create the Trivia Question for the Site
 >curl --header "Content-Type: application/json" \
   	 --request POST \
-  	 --data '{"siteId":1, "question": "how many toes does a pig have?"}' \
-  	 http://localhost:8080/questions
+  	 --data '{"siteId":1, "questionGiven": "how many toes does a pig have?"}' \
+  	 http://localhost:8080/questionGivens
 
-Create some responses for the question
+Create some responses for the questionGiven
 >curl --header "Content-Type: application/json" \
   	 --request POST \
   	 --data '{"answer": "4 toes","isCorrectAnswer": true}' \
-  	 http://localhost:8080/questions/2/answers
+  	 http://localhost:8080/questionGivens/2/answers
   	 
 >curl --header "Content-Type: application/json" \
   	 --request POST \
   	 --data '{"answer": "3 toes","isCorrectAnswer": false}' \
-  	 http://localhost:8080/questions/2/answers
+  	 http://localhost:8080/questionGivens/2/answers
   	 
 >curl --header "Content-Type: application/json" \
  	 --request POST \
  	 --data '{"answer": "The do not have toes silly","isCorrectAnswer": false}' \
- 	 http://localhost:8080/questions/2/answers
+ 	 http://localhost:8080/questionGivens/2/answers
  	 
 ## Example Questions
-Questions show some different types questions that exist
+Questions show some different types questionGivens that exist
 
 ### Trivia Question
 > Which team won the 2017 superbowl?
@@ -96,7 +96,7 @@ Questions show some different types questions that exist
 | Falcons   | [ ] |
 | Patriots  | [X] |
 
-*Only one correct answer with two to four possible answers in this question type.*
+*Only one correct answer with two to four possible answers in this questionGiven type.*
 
 ### Poll Question
 > What's your favorite car brand?
@@ -107,7 +107,7 @@ Questions show some different types questions that exist
 | Honda     | [ ] |
 | Audi      | [X] |
 | BMW       | [ ] |
-*No correct answer with two to four possible answers in this question type.*
+*No correct answer with two to four possible answers in this questionGiven type.*
 
 ### CheckBox Question
 > What colors do you like? 
@@ -120,7 +120,7 @@ Questions show some different types questions that exist
 | Green         | [ ] |
 | Black         | [X] |
 | Purple        | [ ] |
-*Is an objective question with up to ten possible answers.  This style of question allows for multiple 
+*Is an objective questionGiven with up to ten possible answers.  This style of questionGiven allows for multiple 
 correct responses*
 
 ### Matrix Question
@@ -132,4 +132,4 @@ correct responses*
 | 18 to 35      | [ ] |[ ] |
 | 35 to 55      | [ ] |[ ] |
 | \> 55          | [X] |[ ] |
-*Is an objective question that shows options in a matrix. A visitor can only pick one of the available options, there is no right or wrong answer.*
+*Is an objective questionGiven that shows options in a matrix. A visitor can only pick one of the available options, there is no right or wrong answer.*

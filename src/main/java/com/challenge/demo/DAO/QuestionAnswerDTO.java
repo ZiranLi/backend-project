@@ -1,6 +1,6 @@
 package com.challenge.demo.DAO;
 
-import com.challenge.demo.Entity.Question;
+import com.challenge.demo.Entity.Question_Given;
 import com.challenge.demo.Entity.QuestionAnswer;
 
 import java.util.ArrayList;
@@ -21,11 +21,11 @@ public class QuestionAnswerDTO {
 
 	private Date updatedAt;
 
-	public static QuestionAnswer transform(final QuestionAnswerDTO newQADto, final Question question) {
+	public static QuestionAnswer transform(final QuestionAnswerDTO newQADto, final Question_Given questionGiven) {
 		final QuestionAnswer newQa = new QuestionAnswer();
 		newQa.setAnswer(newQADto.getAnswer());
 		newQa.setIsCorrectAnswer(newQADto.getIsCorrectAnswer());
-		newQa.setQuestion(question);
+		newQa.setQuestionGiven(questionGiven);
 
 		return newQa;
 	}
@@ -38,7 +38,7 @@ public class QuestionAnswerDTO {
 		newQaDto.setIsCorrectAnswer(save.isCorrectAnswer());
 		newQaDto.setCreatedAt(save.getCreatedAt());
 		newQaDto.setUpdatedAt(save.getUpdatedAt());
-		newQaDto.setQuestionId(save.getQuestion().getQuestionId());
+		newQaDto.setQuestionId(save.getQuestionGiven().getQuestionId());
 
 		return newQaDto;
 	}

@@ -1,7 +1,7 @@
 package com.challenge.demo.Controller;
 
 import com.challenge.demo.DAO.*;
-import com.challenge.demo.Entity.Question;
+import com.challenge.demo.Entity.Question_Given;
 import com.challenge.demo.Entity.QuestionAnswer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,7 +38,7 @@ public class QuestionController {
 		return siteRepository
 				.findById(incomingQuestion.getSiteId())
 				.map(site -> {
-					final Question newQ = QuestionDTO.createQuestion(incomingQuestion, site);
+					final Question_Given newQ = QuestionDTO.createQuestion(incomingQuestion, site);
 					return new ResponseEntity<>(QuestionDTO.build(questionRepository.save(newQ)), HttpStatus.CREATED);
 				})
 				.orElseGet(() -> ResponseEntity.notFound().build());
@@ -54,13 +54,13 @@ public class QuestionController {
 
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<QuestionDTO> updateQuestion(@RequestBody Question incomingQuestion, @PathVariable(value = "id") Long questionId) {
+	public ResponseEntity<QuestionDTO> updateQuestion(@RequestBody Question_Given incomingQuestionGiven, @PathVariable(value = "id") Long questionId) {
 
 		return questionRepository
 				.findById(questionId)
 				.map(question -> {
-					question.setQuestion(incomingQuestion.getQuestion());
-					question.setSite(incomingQuestion.getSite());
+					question.setQuestion(incomingQuestionGiven.getQuestion());
+					question.setSite(incomingQuestionGiven.getSite());
 					return new ResponseEntity<>(QuestionDTO.build(questionRepository.save(question)), HttpStatus.OK);
 				})
 				.orElseGet(() -> ResponseEntity.notFound().build());

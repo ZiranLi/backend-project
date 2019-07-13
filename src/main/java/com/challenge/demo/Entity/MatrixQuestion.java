@@ -3,6 +3,7 @@ package com.challenge.demo.Entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.List;
 
 @Entity
 public class MatrixQuestion {
@@ -14,16 +15,33 @@ public class MatrixQuestion {
 
     private Integer questionId;
 
-    private Integer matrixId;
-
     @Id
     @GeneratedValue
+    private Integer matrixId;
+
     private Boolean isActive;
 
     private String matrixItemText;
 
+    private List<MatrixItemDetail> matrixItemDetails;
 
     public MatrixQuestion() {
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
+    public List<MatrixItemDetail> getMatrixItemDetails() {
+        return matrixItemDetails;
+    }
+
+    public void setMatrixItemDetails(List<MatrixItemDetail> matrixItemDetails) {
+        this.matrixItemDetails = matrixItemDetails;
     }
 
     public Integer getQuestionId() {

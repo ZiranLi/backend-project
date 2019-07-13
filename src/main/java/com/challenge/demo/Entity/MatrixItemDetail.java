@@ -12,7 +12,7 @@ public class MatrixItemDetail {
    - is_active     boolean
 */
 
-    private Integer matrixItemId;
+    private Integer matrixId;
 
     @Id
     @GeneratedValue
@@ -25,12 +25,12 @@ public class MatrixItemDetail {
     public MatrixItemDetail() {
     }
 
-    public Integer getMatrixItemId() {
-        return matrixItemId;
+    public Integer getMatrixId() {
+        return matrixId;
     }
 
-    public void setMatrixItemId(Integer matrixItemId) {
-        this.matrixItemId = matrixItemId;
+    public void setMatrixId(Integer matrixId) {
+        this.matrixId = matrixId;
     }
 
     public Integer getDetailId() {

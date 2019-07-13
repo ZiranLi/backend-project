@@ -1,6 +1,7 @@
 package com.challenge.demo.Entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -14,32 +15,39 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "question_answer")
+@Table(name = "question")
 @EntityListeners(AuditingEntityListener.class)
-public class QuestionAnswer implements Serializable {
+public class Question_Given implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "question_answer_id")
-	private Long id;
+	@Column(name = "question_id")
+	private Long questionId;
 
-	@ManyToOne(optional = true, fetch = FetchType.LAZY)
-	@JoinColumn(name = "question_id", referencedColumnName = "question_id")
-	private Question_Given questionGiven;
+	@ManyToOne(optional = false, fetch = FetchType.EAGER)
+	@JoinColumn(name = "site_id", referencedColumnName = "site_id")
+	private Site site;
 
-	private String answer;
+	@NotBlank
+	@Length(min = 0, max = 250)
+	private String question;
 
-	@Column(nullable = false, columnDefinition = "TINYINT(1)")
-	private boolean isCorrectAnswer;
+	@OneToMany(mappedBy = "question", fetch = FetchType.EAGER)
+	private List<QuestionAnswer> answers = new ArrayList<>();
 
 	@Column(nullable = false, updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
@@ -51,39 +59,16 @@ public class QuestionAnswer implements Serializable {
 	@LastModifiedDate
 	private Date updatedAt;
 
-	public QuestionAnswer() {
+	public String getQuestion() {
+		return question;
 	}
 
-	public Question_Given getQuestionGiven() {
-		return questionGiven;
+	public void setQuestion(String question) {
+		this.question = question;
 	}
 
-	public void setQuestionGiven(final Question_Given questionGiven) {
-		this.questionGiven = questionGiven;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(final Long id) {
-		this.id = id;
-	}
-
-	public String getAnswer() {
-		return answer;
-	}
-
-	public void setAnswer(final String Answer) {
-		this.answer = Answer;
-	}
-
-	public boolean isCorrectAnswer() {
-		return isCorrectAnswer;
-	}
-
-	public void setIsCorrectAnswer(boolean isCorrectAnswer) {
-		this.isCorrectAnswer = isCorrectAnswer;
+	public Long getQuestionId() {
+		return questionId;
 	}
 
 	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
@@ -96,21 +81,33 @@ public class QuestionAnswer implements Serializable {
 		return updatedAt;
 	}
 
+	public Site getSite() {
+		return site;
+	}
+
+	public void setSite(Site site) {
+		this.site = site;
+	}
+
+	public List<QuestionAnswer> getAnswers() {
+		return answers;
+	}
+
 	@Override
 	public boolean equals(final Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		final QuestionAnswer that = (QuestionAnswer) o;
-		return isCorrectAnswer == that.isCorrectAnswer &&
-				Objects.equals(id, that.id) &&
-				Objects.equals(questionGiven, that.questionGiven) &&
-				Objects.equals(answer, that.answer) &&
-				Objects.equals(createdAt, that.createdAt) &&
-				Objects.equals(updatedAt, that.updatedAt);
+		final Question_Given questionGiven1 = (Question_Given) o;
+		return Objects.equals(questionId, questionGiven1.questionId) &&
+				Objects.equals(site, questionGiven1.site) &&
+				Objects.equals(question, questionGiven1.question) &&
+				Objects.equals(answers, questionGiven1.answers) &&
+				Objects.equals(createdAt, questionGiven1.createdAt) &&
+				Objects.equals(updatedAt, questionGiven1.updatedAt);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, questionGiven, answer, isCorrectAnswer, createdAt, updatedAt);
+		return Objects.hash(questionId, site, question, answers, createdAt, updatedAt);
 	}
 }

@@ -1,6 +1,7 @@
 package com.challenge.demo.Service;
 
 import com.challenge.demo.Entity.Question;
+import com.challenge.demo.Entity.Question_Given;
 import com.challenge.demo.Entity.User;
 
 public interface UserService {

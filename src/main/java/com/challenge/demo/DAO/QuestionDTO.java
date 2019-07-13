@@ -1,6 +1,6 @@
 package com.challenge.demo.DAO;
 
-import com.challenge.demo.Entity.Question;
+import com.challenge.demo.Entity.Question_Given;
 import com.challenge.demo.Entity.Site;
 
 import java.util.ArrayList;
@@ -19,29 +19,29 @@ public class QuestionDTO {
 
 	private Date updatedAt;
 
-	public static QuestionDTO build(Question question) {
+	public static QuestionDTO build(Question_Given questionGiven) {
 		final QuestionDTO obj = new QuestionDTO();
-		obj.setSiteId(question.getSite().getSiteId());
-		obj.setQuestionId(question.getQuestionId());
-		obj.setQuestion(question.getQuestion());
-		obj.setUpdatedAt(question.getUpdatedAt());
-		obj.setCreatedAt(question.getCreatedAt());
+		obj.setSiteId(questionGiven.getSite().getSiteId());
+		obj.setQuestionId(questionGiven.getQuestionId());
+		obj.setQuestion(questionGiven.getQuestion());
+		obj.setUpdatedAt(questionGiven.getUpdatedAt());
+		obj.setCreatedAt(questionGiven.getCreatedAt());
 
 		return obj;
 	}
 
-	public static List<QuestionDTO> build(List<Question> questions) {
+	public static List<QuestionDTO> build(List<Question_Given> questionGivens) {
 		final List<QuestionDTO> ret = new ArrayList<>();
 
-		for (Question question : questions) {
-			ret.add(build(question));
+		for (Question_Given questionGiven : questionGivens) {
+			ret.add(build(questionGiven));
 		}
 
 		return ret;
 	}
 
-	public static Question createQuestion(final QuestionDTO incomingQuestion, final Site site) {
-		final Question newQ = new Question();
+	public static Question_Given createQuestion(final QuestionDTO incomingQuestion, final Site site) {
+		final Question_Given newQ = new Question_Given();
 		newQ.setSite(site);
 		newQ.setQuestion(incomingQuestion.getQuestion());
 
